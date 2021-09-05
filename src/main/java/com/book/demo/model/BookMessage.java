@@ -1,16 +1,11 @@
-package com.book.demo.websoketdemo.model;
+package com.book.demo.model;
 
 
 public class BookMessage {
+
     private MessageType type;
     private String content;
     private String sender;
-
-    public enum MessageType{
-        CHAT,
-        JOIN,
-        LEAVE
-    }
 
     public MessageType getType() {
         return type;
@@ -36,3 +31,6 @@ public class BookMessage {
         this.sender = sender;
     }
 }
+
+
+

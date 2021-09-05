@@ -1,6 +1,7 @@
 package com.book.demo.controller;
 
-import com.book.demo.websoketdemo.model.BookMessage;
+import com.book.demo.model.BookMessage;
+import com.book.demo.model.MessageType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
@@ -30,11 +31,11 @@ public class WebSocketEventListener {
         if(username != null) {
             log.info("User Disconnected : " + username);
 
-            BookMessage chatMessage = new BookMessage();
-            chatMessage.setType(BookMessage.MessageType.LEAVE);
-            chatMessage.setSender(username);
+            BookMessage bookMessage = new BookMessage();
+            bookMessage.setType(MessageType.LEAVE);
+            bookMessage.setSender(username);
 
-            messagingTemplate.convertAndSend("/topic/public", chatMessage);
+            messagingTemplate.convertAndSend("/topic/public", bookMessage);
         }
     }
 }
