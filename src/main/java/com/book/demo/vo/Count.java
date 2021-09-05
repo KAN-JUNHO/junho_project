@@ -10,10 +10,10 @@ import lombok.Setter;
 public class Count {
 
     private static String command;
-    private static Integer count;
-
+    private static int count;
     //빌더가 안먹힘?
-    public static Count of(String command, Integer count){
+
+    public static Count of(String command, int count){
         return Count.builder()
                 .command(command)
                 .count(count)

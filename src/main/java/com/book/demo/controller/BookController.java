@@ -1,6 +1,5 @@
 package com.book.demo.controller;
 
-import com.book.demo.model.BookMessage;
 import com.book.demo.vo.Count;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -22,7 +21,7 @@ public class BookController {
     @MessageMapping("/chat.addUser")
     @SendTo("/topic/public")
     public Count addUser(@Payload Count chatMessage, SimpMessageHeaderAccessor headerAccessor){
-        headerAccessor.getSessionAttributes().put("username", chatMessage.getCount());
+        headerAccessor.getSessionAttributes().put("username", chatMessage.());
         return chatMessage;
     }
 }
