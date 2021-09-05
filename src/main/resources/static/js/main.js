@@ -23,9 +23,11 @@ function connect(event) {
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
 
+        //여기서 ws 엔드 포인트에 연결된다
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
 
+        //onConnected==콜백, onError==error콜백
         stompClient.connect({}, onConnected, onError);
     }
     event.preventDefault();
