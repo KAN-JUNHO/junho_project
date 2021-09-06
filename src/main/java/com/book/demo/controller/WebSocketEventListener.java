@@ -1,7 +1,6 @@
 package com.book.demo.controller;
 
-import com.book.demo.model.BookMessage;
-import com.book.demo.model.MessageType;
+import com.book.demo.vo.MessageType;
 import com.book.demo.vo.Count;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +23,7 @@ public class WebSocketEventListener {
     public void handleWebSocketConnectListener(SessionConnectedEvent event) {
         log.info("Received a new web socket connection");
     }
+
     @EventListener
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
 
@@ -33,11 +33,14 @@ public class WebSocketEventListener {
         if(username != null) {
             log.info("User Disconnected : " + username);
 
-            //?외부패키 못불러온다? 왜지?
             Count bookMessage = new Count();
 
-//            bookMessage.setType(MessageType.LEAVE);
+            bookMessage.setType(MessageType.LEAVE);
             bookMessage.setSender(username);
+            bookMessage.setCnt(bookMessage.getCnt());
+
+//            chatMessage.setType(MessageType.LEAVE);
+//            chatMessage.setSender(username);
 
             messagingTemplate.convertAndSend("/topic/public", bookMessage);
         }

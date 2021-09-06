@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class PlusScheduler {
+public class NumberAccessScheduler {
 
     @Scheduled(fixedDelay = 1000)
     public void execute(){
@@ -18,7 +18,7 @@ public class PlusScheduler {
         if ( count == null)
             return;
         else {
-            Database.plusNumber(count.getCount());
+            Database.plusNumber(count.getCnt());
         }
 //        if (count.getCommand().equals("plus"))
 //            Database.plusNumber(count.getCount());

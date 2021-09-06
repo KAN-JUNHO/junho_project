@@ -1,7 +1,5 @@
 package com.book.demo;
 
-import com.book.demo.vo.Count;
-
 public class MinusThread extends Thread{
 
     @Override

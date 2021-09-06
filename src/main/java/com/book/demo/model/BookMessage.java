@@ -1,6 +1,8 @@
 package com.book.demo.model;
 
 
+import com.book.demo.vo.MessageType;
+
 public class BookMessage {
 
     private MessageType type;

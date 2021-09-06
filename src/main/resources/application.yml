@@ -1,0 +1,11 @@
+
+
+
+logging:
+  level:
+    com:
+      book:
+        demo: TRACE
+    org:
+      springframework:
+        messaging: DEBUG

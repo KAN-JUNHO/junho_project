@@ -84,7 +84,7 @@ function onMessageReceived(payload) {
         messageElement.classList.add('chat-message');
 
         var avatarElement = document.createElement('i');
-        var avatarText = document.createTextNode(message.sender[0]);
+        var avatarText = document.createTextNode(message.sender[0]);//sender
         avatarElement.appendChild(avatarText);
         avatarElement.style['background-color'] = getAvatarColor(message.sender);
 
@@ -97,10 +97,18 @@ function onMessageReceived(payload) {
     }
 
     var textElement = document.createElement('p');
+    var cntElement = document.createElement('p');
+
     var messageText = document.createTextNode(message.content);
+    var messageCnt = document.createTextNode(message.cnt);//
+
     textElement.appendChild(messageText);
+    cntElement.appendChild(messageCnt);//
 
     messageElement.appendChild(textElement);
+    messageElement.appendChild(cntElement);
+
+
 
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;
