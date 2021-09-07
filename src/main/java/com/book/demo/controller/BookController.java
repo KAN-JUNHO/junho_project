@@ -1,5 +1,6 @@
 package com.book.demo.controller;
 
+import com.book.demo.RegisterCountThread;
 import com.book.demo.vo.Count;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -16,8 +17,9 @@ public class BookController {
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public Count sendMessage(@Payload Count count) {
+        RegisterCountThread registerCountThread = new RegisterCountThread(count);
+        registerCountThread.start();
         log.info("1111");
-
         return count;
     }
 
@@ -25,6 +27,7 @@ public class BookController {
     @MessageMapping("/chat.addUser")
     @SendTo("/topic/public")
     public Count addUser(@Payload Count count, SimpMessageHeaderAccessor headerAccessor){
+
         log.info("2222");
         headerAccessor.getSessionAttributes().put("username", count.getContent());
         return count;

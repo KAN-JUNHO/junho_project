@@ -108,8 +108,6 @@ function onMessageReceived(payload) {
     messageElement.appendChild(textElement);
     messageElement.appendChild(cntElement);
 
-
-
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;
 }

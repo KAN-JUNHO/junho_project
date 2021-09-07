@@ -5,7 +5,7 @@ logging:
   level:
     com:
       book:
-        demo: TRACE
+        demo: INFO
     org:
       springframework:
         messaging: DEBUG
