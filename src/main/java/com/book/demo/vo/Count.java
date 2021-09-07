@@ -14,9 +14,9 @@ public class Count {
     private MessageType type;
     private String sender;
     private String content;
-    private Integer cnt;
+    private int cnt;
 
-    public Count(MessageType type, String sender, String content, Integer cnt) {
+    public Count(MessageType type, String sender, String content, int cnt) {
         this.type = type;
         this.sender = sender;
         this.content = content;
@@ -38,6 +38,8 @@ public class Count {
     public void setCnt(int cnt) {
         this.cnt = cnt;
     }
+
+
 
 //    public void plusNumber(int count){
 //        cnt += count;

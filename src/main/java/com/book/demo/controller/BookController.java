@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 public class BookController {
 
     ///app/chat.sendMessage" 인 메세지는 sendMessage()로 라우팅
+    //전에 채팅이 덮어 씌어지지 않음
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public Count sendMessage(@Payload Count count) {
@@ -29,7 +30,7 @@ public class BookController {
     public Count addUser(@Payload Count count, SimpMessageHeaderAccessor headerAccessor){
 
         log.info("2222");
-        headerAccessor.getSessionAttributes().put("username", count.getContent());
+        headerAccessor.getSessionAttributes().put("username", count.getSender());
         return count;
     }
 }

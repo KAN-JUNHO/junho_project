@@ -15,7 +15,7 @@
 <!--</script>-->
 <!--</html>-->
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>Spring Boot WebSocket Chat Application</title>
@@ -51,8 +51,11 @@
         <form id="messageForm" name="messageForm">
             <div class="form-group">
                 <div class="input-group clearfix">
-                    <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
-                    <button type="submit" class="primary">보내기</button>
+                    <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control">
+                        <button type="submit" class="primary">보내기</button>
+                        <button type="submit" class="primary" value="plus">UP</button>
+                        <button type="submit" class="primary" value="minus">DOWN</button>
+                    </input>
                 </div>
             </div>
         </form>

@@ -5,6 +5,11 @@ var chatPage = document.querySelector('#chat-page');
 var usernameForm = document.querySelector('#usernameForm');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
+////////////////////////////////////
+var messageplus = document.querySelector('#messageplus');
+var messageminus = document.querySelector('#messageminus');
+/////////////////////////////////////
+
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
 
@@ -47,13 +52,12 @@ function onConnected() {
     connectingElement.classList.add('hidden');
 }
 
-
 function onError(error) {
     connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
     connectingElement.style.color = 'red';
 }
 
-
+//여기서 plus and down을 해줘야 한다
 function sendMessage(event) {
     var messageContent = messageInput.value.trim();
     if(messageContent && stompClient) {
@@ -124,3 +128,8 @@ function getAvatarColor(messageSender) {
 
 usernameForm.addEventListener('submit', connect, true)
 messageForm.addEventListener('submit', sendMessage, true)
+
+///
+//usernameForm.addEventListener('button', connect, true)
+//messageForm.addEventListener('button', sendMessage, true)
+///
