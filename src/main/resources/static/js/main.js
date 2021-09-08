@@ -5,10 +5,7 @@ var chatPage = document.querySelector('#chat-page');
 var usernameForm = document.querySelector('#usernameForm');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
-////////////////////////////////////
-var messageplus = document.querySelector('#messageplus');
-var messageminus = document.querySelector('#messageminus');
-/////////////////////////////////////
+
 
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
@@ -101,16 +98,12 @@ function onMessageReceived(payload) {
     }
 
     var textElement = document.createElement('p');
-    var cntElement = document.createElement('p');
 
     var messageText = document.createTextNode(message.content);
-    var messageCnt = document.createTextNode(message.cnt);//
 
     textElement.appendChild(messageText);
-    cntElement.appendChild(messageCnt);//
 
     messageElement.appendChild(textElement);
-    messageElement.appendChild(cntElement);
 
     messageArea.appendChild(messageElement);
     messageArea.scrollTop = messageArea.scrollHeight;

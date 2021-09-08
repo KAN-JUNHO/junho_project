@@ -20,7 +20,7 @@ public class BookController {
     public Count sendMessage(@Payload Count count) {
         RegisterCountThread registerCountThread = new RegisterCountThread(count);
         registerCountThread.start();
-        log.info("1111");
+        log.info("메세지 보내기");
         return count;
     }
 
@@ -29,7 +29,7 @@ public class BookController {
     @SendTo("/topic/public")
     public Count addUser(@Payload Count count, SimpMessageHeaderAccessor headerAccessor){
 
-        log.info("2222");
+        log.info("가입");
         headerAccessor.getSessionAttributes().put("username", count.getSender());
         return count;
     }
