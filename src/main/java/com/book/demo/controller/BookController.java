@@ -8,11 +8,12 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Slf4j
 @Controller
 public class BookController {
-
     ///app/chat.sendMessage" 인 메세지는 sendMessage()로 라우팅
     //전에 채팅이 덮어 씌어지지 않음
     @MessageMapping("/chat.sendMessage")
@@ -33,4 +34,6 @@ public class BookController {
         headerAccessor.getSessionAttributes().put("username", count.getSender());
         return count;
     }
+
+
 }

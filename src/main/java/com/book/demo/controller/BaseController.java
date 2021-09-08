@@ -15,13 +15,14 @@ public class BaseController {
     @ResponseBody
     @GetMapping("/plus")
     public String plus(){
-        return "OK";
+        System.out.println("plus");
+        return "plus";
     }
 
     @ResponseBody
     @GetMapping("/minus")
     public String minus(){
-        return "OK";
+        return "minus";
     }
 
 }
