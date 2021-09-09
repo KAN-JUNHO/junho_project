@@ -23,7 +23,8 @@ public class NumberAccessScheduler {
         } catch (NoSuchElementException ignore) {
 
         }
-
+        //큐가 잘들어 가있는니 몇개 들어가니?
+        //
         if (count == null)
             return;
         else {
@@ -36,5 +37,6 @@ public class NumberAccessScheduler {
         }
 
         log.info(String.valueOf(Database.getSingletonInstance().getCnt()));
+
     }
 }

@@ -20,7 +20,8 @@ public class Singleton {
         }
         return instance;
     }
-
+//큐에 들어가는 값들이 잘못들어가룻 있다
+    //
     public Integer getCnt() {
         return cnt;
     }

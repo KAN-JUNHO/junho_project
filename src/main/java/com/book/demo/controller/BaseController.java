@@ -1,13 +1,10 @@
 package com.book.demo.controller;
 
 import com.book.demo.Database;
-import com.book.demo.MinusThread;
-import com.book.demo.RegisterCountThread;
 import com.book.demo.vo.Count;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,6 +18,7 @@ public class BaseController {
     public String plus(){
 //        ObjectMapper mapper = new ObjectMapper();
         Database.addQueue(new Count(null, null, "plus", 1));
+
         return "plus";
     }
 

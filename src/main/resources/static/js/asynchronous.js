@@ -21,11 +21,11 @@ $(function(){
 
 function minus(){
     $.ajax({
-        url:'plus'
+        url:'minus'
         , method : 'POST'
         , success : function(resp){
             if(resp=="minus"){
-                $('#req1').text("전송받은 데이터 : " + resp)
+                $('#req2').text("전송받은 데이터 : " + resp)
             }
         }
     })
