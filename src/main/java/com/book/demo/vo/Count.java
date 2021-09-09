@@ -31,7 +31,7 @@ public class Count {
 
     }
 
-    public Integer getCnt(){
+    public int getCnt(){
         return cnt;
     }
 

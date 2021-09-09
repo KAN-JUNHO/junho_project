@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.util.NoSuchElementException;
 
 @Component
 @Slf4j
@@ -16,7 +17,13 @@ public class NumberAccessScheduler {
     public void execute(){
         log.info("### 큐 감시중###");
         // 큐에서 데이터르 꺼내서 더하는 로직
-        Count count = Database.peekQueue();
+        Count count = null;
+        try {
+            count = Database.popQueue();
+        } catch (NoSuchElementException ignore) {
+
+        }
+
         if (count == null)
             return;
         else {
@@ -27,5 +34,7 @@ public class NumberAccessScheduler {
                 Singleton.getInstance().minusNumber(count.getCnt());
             }
         }
+
+        log.info(String.valueOf(Database.getSingletonInstance().getCnt()));
     }
 }

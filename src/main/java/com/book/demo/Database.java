@@ -33,6 +33,10 @@ public class Database {
     public static void minusNumber(int cnt){
         singletonInstance.minusNumber(1);
     }
+
+    public static Singleton getSingletonInstance(){
+        return singletonInstance;
+    }
 }
 // 플러스로직은 큐에 넣는 작업으로 대체, 마이너스 로직은 큐에서 뺴는 작업으로 대체
 //1. 플러스 로직

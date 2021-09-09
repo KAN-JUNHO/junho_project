@@ -1,8 +1,10 @@
 package com.book.demo.singleton;
 
+import com.book.demo.vo.Count;
+
 public class Singleton {
 
-    private Integer cnt;
+    private int cnt;
     private volatile static Singleton instance;
 
     private Singleton () {
@@ -25,10 +27,12 @@ public class Singleton {
 
     public void plusNumber(int count){
         cnt += count;
+//        return Count;
     }
 
     public void minusNumber(int count){
         cnt -= count;
+//        return Count;
     }
 
 //    public static Integer num = 1;
