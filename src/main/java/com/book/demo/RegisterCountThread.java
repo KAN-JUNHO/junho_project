@@ -1,11 +1,13 @@
 package com.book.demo;
 
+
 import com.book.demo.scheduler.NumberAccessScheduler;
-import com.book.demo.vo.MessageType;
 import com.book.demo.vo.Count;
+import lombok.RequiredArgsConstructor;
 
-
+@RequiredArgsConstructor
 public class RegisterCountThread extends Thread {
+
 
     private Count count;
 
@@ -16,6 +18,7 @@ public class RegisterCountThread extends Thread {
     @Override
     public void run() {
         // 큐에 데이터 넣어줌
-        Database.addQueue(count);
+         Database.addQueue(count);
+
     }
 }

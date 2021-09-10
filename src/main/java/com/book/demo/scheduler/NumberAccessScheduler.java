@@ -13,8 +13,6 @@ import java.util.NoSuchElementException;
 @Slf4j
 public class NumberAccessScheduler{
 
-//    @Scheduled2(fixedDelay = 1000)ScheduledΩ
-//    @Scheduled(fixedDelay = 1000)
     public void execute(){
 
         log.info("### 큐 감시중###");

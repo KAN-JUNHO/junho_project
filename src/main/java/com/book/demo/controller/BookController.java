@@ -1,7 +1,6 @@
 package com.book.demo.controller;
 
-import com.book.demo.RegisterCountThread;
-import com.book.demo.scheduler.NumberAccessScheduler;
+
 import com.book.demo.vo.Count;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +24,7 @@ public class BookController {
 //        RegisterCountThread registerCountThread = new RegisterCountThread(count);
 //        registerCountThread.start();
         log.info("메세지 보내기");
+
         return count;
     }
 

@@ -28,12 +28,10 @@ public class Singleton {
 
     public void plusNumber(int count){
         cnt += count;
-//        return Count;
     }
 
     public void minusNumber(int count){
         cnt -= count;
-//        return Count;
     }
 
 //    public static Integer num = 1;

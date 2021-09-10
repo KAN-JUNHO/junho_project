@@ -30,3 +30,36 @@ function minus(){
         }
     })
 }
+
+$(function(){
+    $("#create").on('click',create);
+})
+
+function create(){
+    $.ajax({
+        url:'thread/create'
+        , method : 'POST'
+        , success : function(resp){
+            if(resp=="create"){
+                $('#req3').text("전송받은 데이터 : " + resp)
+            }
+        }
+    })
+}
+
+
+$(function(){
+    $("#all").on('click',all);
+})
+
+function all(){
+    $.ajax({
+        url:'thread/all'
+        , method : 'POST'
+        , success : function(resp){
+            if(resp=="all"){
+                $('#req4').text("전송받은 데이터 : " + resp)
+            }
+        }
+    })
+}

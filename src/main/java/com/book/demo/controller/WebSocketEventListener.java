@@ -21,6 +21,7 @@ public class WebSocketEventListener {
     // SessionConnectedEvent 와 SessionDisconnectEvent 는 ApplicationEvent에 상속
     @EventListener//@EventListener 주석을 통해 관리되는 Bean의 모든 public 메소드에 등록 할 수 있습니다.
     public void handleWebSocketConnectListener(SessionConnectedEvent event) {
+
         log.info("Received a new web socket connection");
     }
 
@@ -39,8 +40,6 @@ public class WebSocketEventListener {
             bookMessage.setSender(username);
             bookMessage.setCnt(bookMessage.getCnt());
 
-//            chatMessage.setType(MessageType.LEAVE);
-//            chatMessage.setSender(username);
 
             messagingTemplate.convertAndSend("/topic/public", bookMessage);
         }

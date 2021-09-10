@@ -1,7 +1,5 @@
 package com.book.demo;
 
-import com.book.demo.scheduler.JunhoScheduler;
-import com.book.demo.scheduler.Scheduled2;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -14,6 +12,10 @@ import java.lang.reflect.Method;
 public class DemoApplication {
 
 	public static void main(String[] args) {
+
+		RegisterCountThread registerCountThread = new RegisterCountThread();
+		registerCountThread.start();
+
 
 		SpringApplication.run(DemoApplication.class, args);
 
