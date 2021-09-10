@@ -4,19 +4,31 @@ import com.book.demo.Database;
 import com.book.demo.singleton.Singleton;
 import com.book.demo.vo.Count;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 
 import java.util.NoSuchElementException;
 
-@Component
 @Slf4j
-public class NumberAccessScheduler{
+public class JunhoScheduler {
 
-//    @Scheduled2(fixedDelay = 1000)ScheduledΩ
-//    @Scheduled(fixedDelay = 1000)
-    public void execute(){
+    public void executeCountSchedule(){
 
+        boolean isResume = true;
+        long time = 1L;
+        int cnt=0;
+        while (true) {
+
+            try {
+                Thread.sleep(time);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            isResume = false;
+        }
+    }
+
+    @Scheduled2(fixedDelay = 10)
+    public void run(){
         log.info("### 큐 감시중###");
         // 큐에서 데이터르 꺼내서 더하는 로직
         Count count = null;
@@ -39,8 +51,6 @@ public class NumberAccessScheduler{
         }
 
         log.info(String.valueOf(Database.getSingletonInstance().getCnt()));
-
-
 
     }
 }
