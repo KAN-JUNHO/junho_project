@@ -26,11 +26,6 @@ public class BaseController{
         Count count = new Count(null, null, "plus", 1);
         Database.addQueue(count);
 
-//        Count count = new Count(null, null, "plus", 1);
-//        Database.addQueue(count);
-//        RegisterCountThread registerCountThread = new RegisterCountThread(count);
-//        registerCountThread.start();
-//        numberAccessScheduler.execute();
         return "plus";
     }
 
@@ -45,13 +40,13 @@ public class BaseController{
     @ResponseBody
     @PostMapping("/thread/create")
     public String createSchedulerThread(){
-        return "SUCCESS : " + schedulerThreadFactory.createThread(1000);
+        return "SUCCESS : " + schedulerThreadFactory.createThread(3000,true);
     }
 
     @ResponseBody
     @PostMapping("/thread/all")
     public void removeSchedulerThread(){
-        schedulerThreadFactory.removeThread(5000);
+        schedulerThreadFactory.removeThread(3000,false);
     }
 
 }

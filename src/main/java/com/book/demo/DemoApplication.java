@@ -13,8 +13,8 @@ public class DemoApplication {
 
 	public static void main(String[] args) {
 
-		RegisterCountThread registerCountThread = new RegisterCountThread();
-		registerCountThread.start();
+//		RegisterCountThread registerCountThread = new RegisterCountThread();
+//		registerCountThread.start();
 
 
 		SpringApplication.run(DemoApplication.class, args);
