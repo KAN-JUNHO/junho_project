@@ -3,6 +3,7 @@ package com.book.demo.controller;
 import com.book.demo.Database;
 
 
+import com.book.demo.scheduler.SchedulerThread;
 import com.book.demo.scheduler.SchedulerThreadFactory;
 import com.book.demo.vo.Count;
 import lombok.RequiredArgsConstructor;
@@ -46,7 +47,7 @@ public class BaseController{
     @ResponseBody
     @PostMapping("/thread/all")
     public void removeSchedulerThread(){
-        schedulerThreadFactory.removeThread(3000,false);
+        schedulerThreadFactory.removeThread();
     }
 
 }

@@ -15,19 +15,22 @@ import java.util.UUID;
 public class SchedulerThreadFactory{
 
     private Map<String, SchedulerThread> schedulerThreads = new HashMap<>();
+    private long limit;
 
-    public String createThread(int time, boolean check){
-        SchedulerThread thread = new SchedulerThread(time,check);
+    public SchedulerThreadFactory(int i, boolean b) {
+    }
+
+    public String createThread(int time, boolean flag){
+        SchedulerThread thread = new SchedulerThread(time,true);
+
         thread.run();
         String threadKey = UUID.randomUUID().toString();
         schedulerThreads.put(threadKey, thread);
         return threadKey;
     }
 
-    public void removeThread(int time, boolean check){
-        SchedulerThread thread = new SchedulerThread(time,check);
-        thread.run();
-
+    public void removeThread(){
+        Thread.interrupted();
     }
 
 }

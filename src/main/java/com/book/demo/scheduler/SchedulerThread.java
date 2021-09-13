@@ -12,21 +12,21 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class SchedulerThread extends Thread {
 
     private int time;
+    private boolean flag;
     private Count count;
-    private Boolean check;
-    private final AtomicBoolean running = new AtomicBoolean(false);
 
-    public SchedulerThread(){}
-
-    public SchedulerThread(int time, boolean check) {
+    public SchedulerThread(int time, boolean flag) {
         this.time = time;
-        this.check = check;
+        this.flag = flag;
     }
 
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
 
     @Override
     public void run() {
-        while (check){
+        while (flag){
             log.info("### 큐 감시중### {}", time/1000 +" 초 마다 진행중" );
             while (Database.peekQueue() != null) {
                 count = Database.popQueue();
@@ -43,9 +43,12 @@ public class SchedulerThread extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
         }
         log.info("멈춤");
     }
+
+
 }
 // 큐에서 데이터르 꺼내서 더하는 로직
 
