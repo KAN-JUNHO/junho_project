@@ -27,7 +27,6 @@ public class JunhoScheduler {
         }
     }
 
-    @Scheduled2(fixedDelay = 10)
     public void run(){
         log.info("### 큐 감시중###");
         // 큐에서 데이터르 꺼내서 더하는 로직

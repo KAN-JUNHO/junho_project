@@ -5,13 +5,15 @@ var chatPage = document.querySelector('#chat-page');
 var usernameForm = document.querySelector('#usernameForm');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
-
+//////////
+var username = document.querySelector('#username');
 
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
 
 var stompClient = null;
 var username = null;
+
 
 var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',

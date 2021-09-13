@@ -1,7 +1,5 @@
 package com.book.demo.singleton;
 
-import com.book.demo.vo.Count;
-
 public class Singleton {
 
     private int cnt;
@@ -26,6 +24,10 @@ public class Singleton {
         return cnt;
     }
 
+    public void setCnt(int i) {
+        this.cnt=cnt;
+    }
+
     public void plusNumber(int count){
         cnt += count;
     }
@@ -33,6 +35,8 @@ public class Singleton {
     public void minusNumber(int count){
         cnt -= count;
     }
+
+
 
 //    public static Integer num = 1;
 //

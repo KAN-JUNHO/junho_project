@@ -6,10 +6,14 @@ import com.book.demo.Database;
 import com.book.demo.scheduler.SchedulerThread;
 import com.book.demo.scheduler.SchedulerThreadFactory;
 import com.book.demo.vo.Count;
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -20,11 +24,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class BaseController{
     private final SchedulerThreadFactory schedulerThreadFactory;
 
-    @ResponseBody
-    @PostMapping("/plus")
-    public String plus(){
 
-        Count count = new Count(null, null, "plus", 1);
+    // username=junho&password=1213&
+    // { }
+
+
+    @PostMapping("/plus")
+    public String plus(@RequestParam String username){
+        Count count = new Count(null, username , "plus", 1);
+        log.info("input plus = "+count);
         Database.addQueue(count);
 
         return "plus";
@@ -32,8 +40,11 @@ public class BaseController{
 
     @ResponseBody
     @PostMapping("/minus")
-    public String minus(){
-        Database.addQueue(new Count(null, null, "minus", 1));
+    public String minus(@RequestParam(value = "username") String username){
+        Count count = new Count(null, username, "minus", 1);
+        Database.addQueue(count);
+        log.info("input minus = "+ count);
+
         return "minus";
     }
 
@@ -41,13 +52,15 @@ public class BaseController{
     @ResponseBody
     @PostMapping("/thread/create")
     public String createSchedulerThread(){
-        return "SUCCESS : " + schedulerThreadFactory.createThread(3000,true);
+        schedulerThreadFactory.createThread(3000,true);
+        return "create";
     }
 
     @ResponseBody
     @PostMapping("/thread/all")
-    public void removeSchedulerThread(){
+    public String  removeSchedulerThread(){
         schedulerThreadFactory.removeThread();
+        return "all";
     }
 
 }

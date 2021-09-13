@@ -11,26 +11,33 @@ import java.util.UUID;
 @Slf4j
 @Component
 @RequiredArgsConstructor
+public class SchedulerThreadFactory {
 
-public class SchedulerThreadFactory{
+    private Map<Integer, SchedulerThread> schedulerThreads = new HashMap<>();
+    private int threadKey;
 
-    private Map<String, SchedulerThread> schedulerThreads = new HashMap<>();
-    private long limit;
+    public int getThreadKey() {
+        return threadKey;
+    }
 
     public SchedulerThreadFactory(int i, boolean b) {
     }
 
-    public String createThread(int time, boolean flag){
-        SchedulerThread thread = new SchedulerThread(time,true);
-
+    public int createThread(int time, boolean flag) {
+        SchedulerThread thread = new SchedulerThread(time, true);
         thread.run();
-        String threadKey = UUID.randomUUID().toString();
+        this.threadKey=threadKey+1;
+//        String threadKey = UUID.randomUUID().toString();
         schedulerThreads.put(threadKey, thread);
+
         return threadKey;
     }
 
-    public void removeThread(){
-        Thread.interrupted();
-    }
+    public void removeThread() {
+        for ( Integer threadKey : schedulerThreads.keySet() ){
 
+
+        }
+
+    }
 }

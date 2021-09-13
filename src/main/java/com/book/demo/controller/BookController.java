@@ -21,8 +21,7 @@ public class BookController {
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public Count sendMessage(@Payload Count count) {
-//        RegisterCountThread registerCountThread = new RegisterCountThread(count);
-//        registerCountThread.start();
+
         log.info("메세지 보내기");
 
         return count;

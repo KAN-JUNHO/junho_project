@@ -4,7 +4,6 @@ import com.book.demo.Database;
 import com.book.demo.singleton.Singleton;
 import com.book.demo.vo.Count;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.NoSuchElementException;
@@ -37,8 +36,6 @@ public class NumberAccessScheduler{
         }
 
         log.info(String.valueOf(Database.getSingletonInstance().getCnt()));
-
-
 
     }
 }
