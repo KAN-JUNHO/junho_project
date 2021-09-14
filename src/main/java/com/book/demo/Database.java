@@ -6,13 +6,14 @@ import com.book.demo.vo.Count;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.Queue;
 
 @Slf4j
 public class Database {
     private static Singleton singletonInstance = Singleton.getInstance();
-    private static Queue<Count> queue = new ArrayDeque<>(1000);
-
+//    private static Queue<Count> queue = new ArrayDeque<>(1000);
+    private static Queue<Count> queue = new LinkedList<>();
     //Count에 cnt를 더해서 넣어야함
     public static void addQueue(Count count){
         queue.add(count);

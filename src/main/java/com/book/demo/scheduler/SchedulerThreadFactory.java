@@ -25,9 +25,10 @@ public class SchedulerThreadFactory {
 
     public String  createThread(int time, boolean flag) {
         SchedulerThread thread = new SchedulerThread(time, true);
-        thread.run();
         String threadKey = UUID.randomUUID().toString();
         schedulerThreads.put(threadKey, thread);
+        thread.run();
+
         return threadKey;
     }
 
