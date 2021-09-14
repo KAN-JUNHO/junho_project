@@ -13,7 +13,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class SchedulerThreadFactory {
 
-    private Map<Integer, SchedulerThread> schedulerThreads = new HashMap<>();
+    private Map<String , SchedulerThread> schedulerThreads = new HashMap<>();
     private int threadKey;
 
     public int getThreadKey() {
@@ -23,20 +23,18 @@ public class SchedulerThreadFactory {
     public SchedulerThreadFactory(int i, boolean b) {
     }
 
-    public int createThread(int time, boolean flag) {
+    public String  createThread(int time, boolean flag) {
         SchedulerThread thread = new SchedulerThread(time, true);
         thread.run();
-        this.threadKey=threadKey+1;
-//        String threadKey = UUID.randomUUID().toString();
+        String threadKey = UUID.randomUUID().toString();
         schedulerThreads.put(threadKey, thread);
-
         return threadKey;
     }
 
     public void removeThread() {
-        for ( Integer threadKey : schedulerThreads.keySet() ){
-
-
+        for ( String threadKey : schedulerThreads.keySet() ){
+            SchedulerThread thread = schedulerThreads.get(threadKey);
+            thread.setFlag(false);
         }
 
     }

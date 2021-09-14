@@ -6,7 +6,6 @@ var usernameForm = document.querySelector('#usernameForm');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 //////////
-var username = document.querySelector('#username');
 
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');

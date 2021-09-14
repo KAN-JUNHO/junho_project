@@ -3,18 +3,20 @@ package com.book.demo.controller;
 import com.book.demo.Database;
 
 
-import com.book.demo.scheduler.SchedulerThread;
 import com.book.demo.scheduler.SchedulerThreadFactory;
 import com.book.demo.vo.Count;
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Map;
 
 
 @Slf4j
@@ -28,11 +30,19 @@ public class BaseController{
     // username=junho&password=1213&
     // { }
 
-
     @PostMapping("/plus")
-    public String plus(@RequestParam String username){
-        Count count = new Count(null, username , "plus", 1);
-        log.info("input plus = "+count);
+    @ResponseBody
+    public String plus(@RequestBody String jsonString) throws JsonProcessingException {
+
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, String> params = mapper.readValue(jsonString, Map.class);
+        Count count = new Count(null, params.get("username") , "plus", 1);
+        log.info(String.valueOf(count));
+//        try {
+//            log.info("input plus = "+mapper.writeValueAsString(count));
+//        } catch (JsonProcessingException e) {
+//            e.printStackTrace();
+//        }
         Database.addQueue(count);
 
         return "plus";
@@ -40,10 +50,13 @@ public class BaseController{
 
     @ResponseBody
     @PostMapping("/minus")
-    public String minus(@RequestParam(value = "username") String username){
-        Count count = new Count(null, username, "minus", 1);
+    public String minus(@RequestBody String jsonString) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, String> params = mapper.readValue(jsonString, Map.class);
+        Count count = new Count(null, params.get("username") , "minus", 1);
+        log.info(String.valueOf(count));
+
         Database.addQueue(count);
-        log.info("input minus = "+ count);
 
         return "minus";
     }

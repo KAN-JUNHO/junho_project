@@ -1,19 +1,18 @@
 //클라이언트 쪽
 $(function(){
     $('#plus').on('click',plus);
-    var username={username}
 })
-
 function plus() {
     $.ajax({
         url:'plus'
         , method : 'POST'
         , contentType : "application/json"
+        , dataType:"json"
         , data: JSON.stringify({username})
-        , success :  function(resp){
-            if(resp=="plus"){
-                $('#req1').text("전송받은 데이터 : " + resp)
-            }
+        // , data:JSON.stringify(username)
+        , success :  function(data){
+            $('#req1').text("전송받은 데이터 : " + data)
+
         }
     })
 }
@@ -26,10 +25,13 @@ function minus(){
     $.ajax({
         url:'minus'
         , method : 'POST'
-        , success : function(resp){
-            if(resp=="minus"){
-                $('#req2').text("전송받은 데이터 : " + resp)
-            }
+        , contentType : "application/json"
+        , dataType:"json"
+        , data: JSON.stringify({username})
+        // , data:JSON.stringify(username)
+        , success :  function(data){
+            $('#req2').text("전송받은 데이터 : " + data)
+
         }
     })
 }
