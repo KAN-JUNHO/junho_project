@@ -14,8 +14,11 @@
 
 <!--</script>-->
 <!--</html>-->
+
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
+<!--<html xmlns="http://www.w3.org/1999/html">-->
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>Spring Boot WebSocket Chat Application</title>
@@ -60,21 +63,14 @@
         </form>
         <form>
             <input type="button" class="primary" id="plus" value="plus"><span id="req1" style = "color:red"></span></input>
-            <input type="button" class="primary" id="minus" value="minus"/><span id="req2" style = "color:red"></span></input>
-            <input type="button" class="primary" id="create" value="create"><span id="req3" style = "color:red"></span></input>
-            <input type="button" class="primary" id="all" value="all"/><span id="req4" style = "color:red"></span></input>
+            <input type="button" class="primary" id="minus" value="minus"/><span id="req2" style = "color:orange"></span></input>
+            <input type="button" class="primary" id="create" value="create"><span id="req3" style = "color:yellow"></span></input>
+            <input type="button" class="primary" id="all" value="all"/><span id="req4" style = "color:green"></span></input>
         </form>
 
-        <div style="overflow:scroll; width:700px; height:500px; background: black; color: #128ff2">
-            <div>안녕</div>
-            <div>안녕</div>
-            <div>안녕</div>
-            <div>안녕</div>
-            <div>안녕</div>
-            <div>안녕</div>
-            <div>안녕</div>
-            <div>안녕</div>
-            <div>안녕</div>
+        <div style="overflow:scroll; width:700px; height:500px; background: wheat; color: #128ff2">
+            <div>start</div>
+            <div id="first"></div>
        </div>
 
     </div>

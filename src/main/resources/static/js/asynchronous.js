@@ -1,7 +1,9 @@
 //클라이언트 쪽
+
 $(function(){
     $('#plus').on('click',plus);
 })
+
 function plus() {
     $.ajax({
         url:'plus'
@@ -9,9 +11,10 @@ function plus() {
         , contentType : "application/json"
         , dataType:"json"
         , data: JSON.stringify({username})
-        // , data:JSON.stringify(username)
+
         , success :  function(data){
-            $('#req1').text("전송받은 데이터 : " + data)
+            console.log(data)
+            $('#first').prepend("<li> 전송받은 데이터 : " +data.cnt +"  "+ data.content +"  "+ data.sender +"  "+ data.type  + "</li>" )
 
         }
     })
@@ -30,7 +33,7 @@ function minus(){
         , data: JSON.stringify({username})
         // , data:JSON.stringify(username)
         , success :  function(data){
-            $('#req2').text("전송받은 데이터 : " + data)
+            $('#first').append("<li> 전송받은 데이터 : " +data.cnt +"  "+ data.content +"  "+ data.sender +"  "+ data.type  + "</li>" )
 
         }
     })
@@ -44,10 +47,13 @@ function create(){
     $.ajax({
         url:'thread/create'
         , method : 'POST'
-        , success : function(resp){
-            if(resp=="create"){
-                $('#req3').text("전송받은 데이터 : " + resp)
-            }
+        , contentType : "application/json"
+        , dataType:"json"
+        , data: JSON.stringify({username})
+
+        , success : function(data){
+            console.log(data)
+            $('#first').append("<li> 전송받은 데이터 : " +data.cnt +"  "+ data.content +"  "+ data.sender +"  "+ data.type  + "</li>" )
         }
     })
 }

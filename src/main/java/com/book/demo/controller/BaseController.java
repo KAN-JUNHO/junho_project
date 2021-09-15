@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
@@ -32,41 +31,33 @@ public class BaseController{
 
     @PostMapping("/plus")
     @ResponseBody
-    public String plus(@RequestBody String jsonString) throws JsonProcessingException {
+    public Count plus(@RequestBody String jsonString) throws JsonProcessingException {
 
         ObjectMapper mapper = new ObjectMapper();
         Map<String, String> params = mapper.readValue(jsonString, Map.class);
-        Count count = new Count(null, params.get("username") , "plus", 1);
-        log.info(String.valueOf(count));
-//        try {
-//            log.info("input plus = "+mapper.writeValueAsString(count));
-//        } catch (JsonProcessingException e) {
-//            e.printStackTrace();
-//        }
-        Database.addQueue(count);
 
-        return "plus";
+        Count count = new Count(null, params.get("username") , "plus", 1);
+        log.info("input = "+count);
+        Database.addQueue(count);
+        return count;
     }
 
     @ResponseBody
     @PostMapping("/minus")
-    public String minus(@RequestBody String jsonString) throws JsonProcessingException {
+    public Count minus(@RequestBody String jsonString) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, String> params = mapper.readValue(jsonString, Map.class);
         Count count = new Count(null, params.get("username") , "minus", 1);
-        log.info(String.valueOf(count));
-
+        log.info("input = "+count);
         Database.addQueue(count);
-
-        return "minus";
+        return count;
     }
 
 
     @ResponseBody
     @PostMapping("/thread/create")
-    public String createSchedulerThread(){
-        schedulerThreadFactory.createThread(3000,true);
-        return "create";
+    public Integer createSchedulerThread(){
+        return schedulerThreadFactory.createThread(3000,true);
     }
 
     @ResponseBody
