@@ -56,8 +56,9 @@ public class BaseController{
 
     @ResponseBody
     @PostMapping("/thread/create")
-    public Integer createSchedulerThread(){
-        return schedulerThreadFactory.createThread(3000,true);
+    public String createSchedulerThread(){
+        schedulerThreadFactory.createThread(3000,true);
+        return "ok";
     }
 
     @ResponseBody

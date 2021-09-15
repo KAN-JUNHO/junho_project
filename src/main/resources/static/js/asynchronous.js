@@ -68,9 +68,7 @@ function all(){
         url:'thread/all'
         , method : 'POST'
         , success : function(resp){
-            if(resp=="all"){
-                $('#req4').text("전송받은 데이터 : " + resp)
-            }
+            $('#req4').text("전송받은 데이터 : " + resp)
         }
     })
 }

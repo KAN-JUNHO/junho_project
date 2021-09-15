@@ -20,10 +20,10 @@ public class SchedulerThreadFactory {
 //    }
 
     public Integer createThread(int time, boolean flag) {
-        SchedulerThread thread = new SchedulerThread(time, true);
+        SchedulerThread thread = new SchedulerThread(time,true);
         String threadKey = UUID.randomUUID().toString();
         schedulerThreads.put(threadKey, thread);
-        thread.run();
+        thread.start();
 
         return Database.getSingletonInstance().getCnt();
     }
