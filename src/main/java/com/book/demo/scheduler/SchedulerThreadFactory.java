@@ -1,6 +1,5 @@
 package com.book.demo.scheduler;
 
-import com.book.demo.Database;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -19,13 +18,13 @@ public class SchedulerThreadFactory {
 //    public SchedulerThreadFactory(int i, boolean b) {
 //    }
 
-    public Integer createThread(int time, boolean flag) {
+    public void createThread(int time, boolean flag) {
         SchedulerThread thread = new SchedulerThread(time,true);
         String threadKey = UUID.randomUUID().toString();
         schedulerThreads.put(threadKey, thread);
         thread.start();
 
-        return Database.getSingletonInstance().getCnt();
+
     }
 
     public void removeThread() {

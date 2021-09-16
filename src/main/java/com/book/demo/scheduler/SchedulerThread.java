@@ -5,9 +5,6 @@ import com.book.demo.singleton.Singleton;
 import com.book.demo.vo.Count;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.NoSuchElementException;
-import java.util.concurrent.atomic.AtomicBoolean;
-
 @Slf4j
 public class SchedulerThread extends Thread {
 
@@ -23,7 +20,8 @@ public class SchedulerThread extends Thread {
     public void setFlag(boolean flag) {
         this.flag = flag;
     }
-
+    
+    
     @Override
     public void run() {
         while (flag){
@@ -37,6 +35,8 @@ public class SchedulerThread extends Thread {
                     Singleton.getInstance().minusNumber(count.getCnt());
                 }
             }
+
+
             log.info(String.valueOf(Database.getSingletonInstance().getCnt()));
 //            log.info("### COUNT : {}", count);
             try {

@@ -10,11 +10,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
+import org.springframework.http.codec.ServerSentEvent;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import reactor.core.publisher.Flux;
 
+import java.time.Duration;
 import java.util.Map;
 
 
@@ -56,7 +61,7 @@ public class BaseController{
 
     @ResponseBody
     @PostMapping("/thread/create")
-    public String createSchedulerThread(){
+    public String  createSchedulerThread(){
         schedulerThreadFactory.createThread(3000,true);
         return "ok";
     }
@@ -66,6 +71,14 @@ public class BaseController{
     public String  removeSchedulerThread(){
         schedulerThreadFactory.removeThread();
         return "all";
+    }
+
+    @ResponseBody
+    @PostMapping(value = "/view", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<ServerSentEvent<Stock>> stock(@RequestBody String jsonString){
+        return Flux.interval(Duration.ofSeconds(3))
+                .map(t -> String.)
+
     }
 
 }
