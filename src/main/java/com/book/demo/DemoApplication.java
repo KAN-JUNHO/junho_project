@@ -2,22 +2,26 @@ package com.book.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.task.AsyncTaskExecutor;
+import org.springframework.core.task.TaskExecutor;
+import org.springframework.scheduling.annotation.AsyncConfigurer;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.concurrent.ConcurrentTaskExecutor;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.util.concurrent.Executors;
 
 @SpringBootApplication
 @EnableScheduling
-public class DemoApplication {
+@EnableAsync
+public class DemoApplication implements AsyncConfigurer {
 
 	public static void main(String[] args) {
-
-//		RegisterCountThread registerCountThread = new RegisterCountThread();
-//		registerCountThread.start();
-
-
 		SpringApplication.run(DemoApplication.class, args);
+	}
+}
+
 
 //		Class<JunhoScheduler> clazz = JunhoScheduler.class;
 //
@@ -35,10 +39,7 @@ public class DemoApplication {
 //				e.printStackTrace();
 //			}
 //
-//		}
 
-	}
-}
 //
 //	private static void executeFixedDelaySchedule(Method method, Object obj, int delayTime){
 //

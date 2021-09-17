@@ -6,10 +6,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.codec.ServerSentEvent;
 import org.springframework.util.StopWatch;
 import org.springframework.web.client.RestTemplate;
+import reactor.core.publisher.Flux;
 
 import java.net.URI;
+import java.time.Duration;
 import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -21,21 +24,10 @@ public class webFluxTest {
 
     @Test
     public void blocking() {
-        final RestTemplate restTemplate = new RestTemplate();
-
-        final StopWatch stopWatch = new StopWatch();
-        stopWatch.start();
-
-        for (int i = 0; i < 3; i++) {
-            final ResponseEntity<String> response =
-                    restTemplate.exchange(THREE_SECOND_URL, HttpMethod.GET, HttpEntity.EMPTY, String.class);
-            assertThat(response.getBody()).contains("success");
+        public Flux<ServerSentEvent<String>> intervalStream () {
+            return Flux.interval(Duration.ofSeconds(1))
+                    .map(i -> ServerSentEvent.builder("data " + i).build());
         }
-
-        stopWatch.stop();
-
-        System.out.println(stopWatch.getTotalTimeSeconds());
     }
-
 
 }

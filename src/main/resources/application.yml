@@ -9,3 +9,4 @@ logging:
     org:
       springframework:
         messaging: DEBUG
+

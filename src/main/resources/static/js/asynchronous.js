@@ -47,9 +47,7 @@ function create(){
     $.ajax({
         url:'thread/create'
         , method : 'POST'
-        , success : function(data){
 
-        }
     })
 }
 
@@ -77,13 +75,12 @@ function view(){
     $.ajax({
         url:'view'
         , method : 'POST'
-        // , contentType : "application/json"
-        // , dataType:"json"
-        // , data: JSON.stringify({})
+        , contentType : "application/json"
+        , dataType:"json"
+        , data: JSON.stringify({username})
         , success : function(data){
-
             console.log(data)
-            $('#show').append("<li> 전송받은 데이터 : " + "</li>" )
+            $('#show').append("<li> view 왔다감" + "</li>" )
 
         }
     })
