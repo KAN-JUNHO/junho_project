@@ -23,7 +23,7 @@ public class webFluxTest {
 
 
     @Test
-    public void blocking() {
+    public Flux<ServerSentEvent<String>> blocking() {
         public Flux<ServerSentEvent<String>> intervalStream () {
             return Flux.interval(Duration.ofSeconds(1))
                     .map(i -> ServerSentEvent.builder("data " + i).build());

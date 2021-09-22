@@ -10,29 +10,20 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Bean;
-import org.springframework.core.task.TaskExecutor;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.ServerSentEvent;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
-import javax.annotation.security.DeclareRoles;
 import java.time.Duration;
-import java.util.Collections;
 import java.util.Map;
-import java.util.stream.Stream;
 
 
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-@EnableAsync
 public class BaseController{
     private final SchedulerThreadFactory schedulerThreadFactory;
 
@@ -76,21 +67,19 @@ public class BaseController{
     }
 
     @ResponseBody
-    @GetMapping(value = "/view" )
+    @PostMapping(value = "/view",produces = MediaType.APPLICATION_JSON_VALUE)
     public Flux<ServerSentEvent<String>> intervalStream() {
-        return  Flux.interval(Duration.ofSeconds(3))
+        return Flux.interval(Duration.ofSeconds(3))
                 .map(i -> ServerSentEvent.builder("data " + Database.getSingletonInstance().getCnt()).build());
-    }
-    @ResponseBody
-    @PostMapping(value = "/view"){
-    public Flux<ServerSentEvent<String>> echo(@RequestBody Mono<String> body) {
-        return
-    }
+
+
 //    @ResponseBody
-//    @RequestMapping(value = "/view" ,method = {RequestMethod.GET, RequestMethod.POST}, produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-//    public Mono<ServerSentEvent<String>> intervalStream() {
-//        return  Mono.delay(Duration.ofSeconds(3))
+//    @GetMapping(value = "/view",produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+//    public Flux<ServerSentEvent<String>> intervalStream() {
+//        return Flux.interval(Duration.ofSeconds(3))
 //                .map(i -> ServerSentEvent.builder("data " + Database.getSingletonInstance().getCnt()).build());
-//    }
+//
+
+    }
 
 }

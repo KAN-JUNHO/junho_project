@@ -10,3 +10,10 @@ logging:
       springframework:
         messaging: DEBUG
 
+spring:
+  task:
+    execution:
+      pool:
+        core-size: 8
+        max-size: 8
+

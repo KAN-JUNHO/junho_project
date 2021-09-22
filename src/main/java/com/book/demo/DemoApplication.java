@@ -14,8 +14,7 @@ import java.util.concurrent.Executors;
 
 @SpringBootApplication
 @EnableScheduling
-@EnableAsync
-public class DemoApplication implements AsyncConfigurer {
+public class DemoApplication{
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
