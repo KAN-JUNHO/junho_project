@@ -70,15 +70,8 @@ public class BaseController{
     @PostMapping(value = "/view",produces = MediaType.APPLICATION_JSON_VALUE)
     public Flux<ServerSentEvent<String>> intervalStream() {
         return Flux.interval(Duration.ofSeconds(3))
-                .map(i -> ServerSentEvent.builder("data " + Database.getSingletonInstance().getCnt()).build());
+                .map(i -> ServerSentEvent.builder("value : " + Database.getSingletonInstance().getCnt()).build());
 
-
-//    @ResponseBody
-//    @GetMapping(value = "/view",produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-//    public Flux<ServerSentEvent<String>> intervalStream() {
-//        return Flux.interval(Duration.ofSeconds(3))
-//                .map(i -> ServerSentEvent.builder("data " + Database.getSingletonInstance().getCnt()).build());
-//
 
     }
 
