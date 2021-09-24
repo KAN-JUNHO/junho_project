@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.ServerSentEvent;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -40,11 +39,13 @@ public class BaseController{
         return count;
     }
 
-    @ResponseBody
+
     @PostMapping("/minus")
+    @ResponseBody
     public Count minus(@RequestBody String jsonString) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, String> params = mapper.readValue(jsonString, Map.class);
+
         Count count = new Count(null, params.get("username") , "minus", 1);
         log.info("input = "+count);
         Database.addQueue(count);
@@ -52,27 +53,28 @@ public class BaseController{
     }
 
 
-    @ResponseBody
     @PostMapping("/thread/create")
+    @ResponseBody
     public String  createSchedulerThread(){
         schedulerThreadFactory.createThread(3000,true);
         return "ok";
     }
 
-    @ResponseBody
     @PostMapping("/thread/all")
+    @ResponseBody
     public String  removeSchedulerThread(){
         schedulerThreadFactory.removeThread();
         return "all";
     }
 
+    @GetMapping(value = "/view",produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    @PostMapping(value = "/view",produces = MediaType.APPLICATION_JSON_VALUE)
-    public Flux<ServerSentEvent<String>> intervalStream() {
-        return Flux.interval(Duration.ofSeconds(3))
-                .map(i -> ServerSentEvent.builder("value : " + Database.getSingletonInstance().getCnt()).build());
+    public ServerSentEvent<String> intervalStream() {
+        log.info(String.valueOf(Flux.interval(Duration.ofSeconds(3)).take(10).map(i -> ServerSentEvent.builder("" + Database.getSingletonInstance().getCnt()).build())));
 
+        return Flux.interval(Duration.ofSeconds(1)).take(100).map(i -> ServerSentEvent.builder("" + Database.getSingletonInstance().getCnt()).build()).blockFirst(Duration.ofSeconds(100));
 
+//        return Flux.interval(Duration.ofSeconds(3))
+//                .map(i -> ServerSentEvent.builder("" + Database.getSingletonInstance().getCnt()).build());
     }
-
 }
