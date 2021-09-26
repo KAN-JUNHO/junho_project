@@ -69,7 +69,7 @@ $(function(){
 function view(){
     $.ajax({
         url:'view'
-        , method : 'GET'
+        , method : 'POST'
         , contentType : "application/json"
         , dataType:"json"
         , data: JSON.stringify({username})
