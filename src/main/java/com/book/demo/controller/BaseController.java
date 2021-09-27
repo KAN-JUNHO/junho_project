@@ -12,10 +12,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.ServerSentEvent;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -66,25 +64,24 @@ public class BaseController{
         return "all";
     }
 
-//    @GetMapping(value = "/view",produces = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseBody
-//    public Flux<ServerSentEvent<String>> intervalStream() {
-//        log.info(String.valueOf(Flux.interval(Duration.ofSeconds(3)).map(i -> ServerSentEvent.builder("" + Database.getSingletonInstance().getCnt()).build())));
-//
-//        return Flux.interval(Duration.ofSeconds(1)).map(i -> ServerSentEvent.builder("" + Database.getSingletonInstance().getCnt()).build());
-//
-////        return Flux.interval(Duration.ofSeconds(3))
-////                .map(i -> ServerSentEvent.builder("" + Database.getSingletonInstance().getCnt()).build());
-//    }
-    @GetMapping(value = "/stream")
-    Flux<Map<String, Integer>> stream() {
+
+
+    @GetMapping(value = "/stream",produces = MediaType.APPLICATION_JSON_VALUE)
+    public Flux<Map<String, Integer>> stream() throws InterruptedException {
         Stream<Integer> stream = Stream.iterate(Database.getSingletonInstance().getCnt(), i -> Database.getSingletonInstance().getCnt());
-        return (Flux<Map<String, Integer>>) Flux.fromStream(stream.limit(1000))
-                .map(tuple -> Flux.interval(Duration.ofSeconds(3)).zipWith(Collections.singletonMap("value", tuple)));
+        return Flux.fromStream(stream.limit(10)).zipWith(Flux.interval(Duration.ofSeconds(3)))
+                .map(tuple -> Collections.singletonMap("value", tuple.getT1()));
     }
 
-    @PostMapping("/view")
-    Flux<String> view(@RequestBody Flux<String> body) {
-        return body.map(String::toUpperCase);
+
+    @GetMapping(value = "/view",produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Flux<ServerSentEvent<String>> intervalStream() {
+        log.info(String.valueOf(Flux.interval(Duration.ofSeconds(3)).map(i -> ServerSentEvent.builder("" + Database.getSingletonInstance().getCnt()).build())));
+        return Flux.interval(Duration.ofSeconds(3))
+                .map(i -> ServerSentEvent.builder("" + Database.getSingletonInstance().getCnt()).build());
     }
+
+
+
 }

@@ -22,12 +22,12 @@ public class webFluxTest {
     Logger log = LoggerFactory.getLogger(getClass());
 
 
-    @Test
-    public Flux<ServerSentEvent<String>> blocking() {
-        public Flux<ServerSentEvent<String>> intervalStream () {
-            return Flux.interval(Duration.ofSeconds(1))
-                    .map(i -> ServerSentEvent.builder("data " + i).build());
-        }
-    }
+//    @Test
+//    public Flux<ServerSentEvent<String>> blocking() {
+//        public Flux<ServerSentEvent<String>> intervalStream () {
+//            return Flux.interval(Duration.ofSeconds(1))
+//                    .map(i -> ServerSentEvent.builder("data " + i).build());
+//        }
+//    }
 
 }

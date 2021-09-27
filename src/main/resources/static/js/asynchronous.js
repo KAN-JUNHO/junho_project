@@ -33,7 +33,7 @@ function minus(){
         // , data:JSON.stringify(username)
         , success :  function(data){
             console.log(data)
-            $('#second').append("<li> intput = " +data.cnt +"  "+ data.content +"  "+ data.sender + "</li>" )
+            $('#first').append("<li> intput = " +data.cnt +"  "+ data.content +"  "+ data.sender + "</li>" )
 
         }
     })
@@ -69,14 +69,17 @@ $(function(){
 function view(){
     $.ajax({
         url:'view'
-        , method : 'POST'
+        , method : 'GET'
         , contentType : "application/json"
         , dataType:"json"
         , data: JSON.stringify({username})
         , success : function(data){
-            console.log(data)
-            $('#show').append("<li> " +data + "</li>" )
+            $('#show').append("<li> " + data[0].value + "</li>" )
 
         }
     })
+}
+function printName()  {
+    const name = document.getElementById('number').value;
+    document.getElementById("result").innerText = name;
 }
