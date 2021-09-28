@@ -1,38 +1,34 @@
-//클라이언트 쪽
 
-$(function(){
-    $('#plus').on('click',plus);
-})
-
+// $(function(){
+//     $('#plus').on('click',plus);
+// })
 function plus() {
     $.ajax({
-        url:'plus'
+        url:'/plus'
         , method : 'POST'
         , contentType : "application/json"
         , dataType:"json"
         , data: JSON.stringify({username})
         , success :  function(data){
-            console.log(data)
             $('#first').append("<li> intput = " +data.cnt +"  "+ data.content +"  "+ data.sender +"  "+ "</li>" )
 
         }
     })
+
 }
 
-$(function(){
-    $("#minus").on('click',minus);
-})
+// $(function(){
+//     $("#minus").on('click',minus);
+// })
 
 function minus(){
     $.ajax({
-        url:'minus'
+        url:'/minus'
         , method : 'POST'
         , contentType : "application/json"
         , dataType:"json"
         , data: JSON.stringify({username})
-        // , data:JSON.stringify(username)
         , success :  function(data){
-            console.log(data)
             $('#first').append("<li> intput = " +data.cnt +"  "+ data.content +"  "+ data.sender + "</li>" )
 
         }
@@ -80,4 +76,27 @@ function view(){
     })
 }
 
+let number = document.querySelector('#number')
+function pluscnt(){
+    if (number.value>0) {
+        for (let i = 0; i < number.value; i++) {
+            plus()
+        }
+    }
+    else {
+        alert("0보다 큰숫자를 입력해주세요")
+    }
+
+}
+function minuscnt(){
+    if (number.value>0) {
+        for (let i = 0; i < number.value; i++) {
+            minus()
+        }
+    }
+    else {
+        alert("0보다 큰숫자를 입력해주세요")
+    }
+
+}
 

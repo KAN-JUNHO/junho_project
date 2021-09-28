@@ -24,7 +24,6 @@ public class SchedulerThreadFactory {
         schedulerThreads.put(threadKey, thread);
         thread.start();
 
-
     }
 
     public void removeThread() {

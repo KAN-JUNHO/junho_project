@@ -26,24 +26,25 @@ public class SchedulerThread extends Thread {
     public void run() {
         while (flag){
             log.info("### 큐 감시중### {}", time/1000 +" 초 마다 진행중" );
+
             while (Database.peekQueue() != null) {
                 count = Database.popQueue();
-                log.info("output =  "+ count);
+//                log.info("output =  "+ count);
                 if (count.getContent().equals("plus"))
                     Singleton.getInstance().plusNumber(count.getCnt());
                 else if (count.getContent().equals("minus")) {
                     Singleton.getInstance().minusNumber(count.getCnt());
                 }
             }
-
-
-            log.info(String.valueOf(Database.getSingletonInstance().getCnt()));
-//            log.info("### COUNT : {}", count);
             try {
                 Thread.sleep(time);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+            log.info(String.valueOf(Database.getSingletonInstance().getCnt()));
+//            log.info("### COUNT : {}", count);
+
 
         }
         log.info("멈춤");

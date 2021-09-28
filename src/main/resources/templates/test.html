@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form>
+        <input type="number" id="number" placeholder="숫자를 넣어주세요">
+        <input type="number" id="timer" placeholder="타이머" >
+        <input type="button" id="plus" value="plus" onclick="pluscnt()">
+        <input type="button" id="minus" value="minus" onclick="minuscnt()">
+    </form>
+
+    <form>
+        <input type="button" class="primary" id="create" value="create">
+        <input type="button" class="primary" id="stop" value="stop"/>
+        <input type="button" class="primary" id="view" value="view"/>
+    </form>
+
+    <div style="overflow:scroll; width:700px; height:500px; background: wheat; color: #128ff2">
+        <div>start</div>
+        <div id="show">
+            <div id="first"></div>
+            <div id="second"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="/js/jquery-3.6.0.js"></script>
+    <script src="/js/test.js"></script>
+    <script src="/js/main.js"></script>
+
+</body>
+</html>

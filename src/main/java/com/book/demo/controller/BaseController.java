@@ -16,9 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 
 import java.time.Duration;
-import java.util.Collections;
+
 import java.util.Map;
-import java.util.stream.Stream;
 
 
 @Slf4j
@@ -27,14 +26,16 @@ import java.util.stream.Stream;
 public class BaseController{
     private final SchedulerThreadFactory schedulerThreadFactory;
 
+//    private Integer a = 0;
+
     @PostMapping("/plus")
     public Count plus(@RequestBody String jsonString) throws JsonProcessingException {
-
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String, String> params = mapper.readValue(jsonString, Map.class);
-
-        Count count = new Count(null, params.get("username") , "plus", 1);
-        log.info("input = "+count);
+        log.info("######  : {}", Database.requestCount++);
+//        ObjectMapper mapper = new ObjectMapper();
+//        Map<String, String> params = mapper.readValue(jsonString, Map.class);
+// params.get("username")
+        Count count = new Count(null, null, "plus", 1);
+//        log.info("input = "+count);
         Database.addQueue(count);
         return count;
     }
@@ -46,7 +47,7 @@ public class BaseController{
         Map<String, String> params = mapper.readValue(jsonString, Map.class);
 
         Count count = new Count(null, params.get("username") , "minus", 1);
-        log.info("input = "+count);
+//        log.info("input = "+count);
         Database.addQueue(count);
         return count;
     }
@@ -64,18 +65,12 @@ public class BaseController{
         return "all";
     }
 
-
-
-    @GetMapping(value = "/stream",produces = MediaType.APPLICATION_JSON_VALUE)
-    public Flux<Map<String, Integer>> stream() throws InterruptedException {
-        Stream<Integer> stream = Stream.iterate(Database.getSingletonInstance().getCnt(), i -> Database.getSingletonInstance().getCnt());
-        return Flux.fromStream(stream.limit(10)).zipWith(Flux.interval(Duration.ofSeconds(3)))
-                .map(tuple -> Collections.singletonMap("value", tuple.getT1()));
+    @GetMapping("/queueSize")
+    public Object test(){
+        return Database.getQueue().size();
     }
 
-
     @GetMapping(value = "/view",produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
     public Flux<ServerSentEvent<String>> intervalStream() {
         log.info(String.valueOf(Flux.interval(Duration.ofSeconds(3)).map(i -> ServerSentEvent.builder("" + Database.getSingletonInstance().getCnt()).build())));
         return Flux.interval(Duration.ofSeconds(3))
