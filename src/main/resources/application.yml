@@ -9,11 +9,22 @@ logging:
     org:
       springframework:
         messaging: DEBUG
+#
+#spring:
+#  task:
+#    execution:
+#      pool:
+#        core-size: 8
+#        max-size: 8
 
 spring:
-  task:
-    execution:
-      pool:
-        core-size: 8
-        max-size: 8
-
+  h2:
+    console:
+      enabled: true
+  profiles:
+    active: local
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:userdb;DB_CLOSE_DELAY=-1
+    username: sa
+    password:

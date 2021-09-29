@@ -64,8 +64,8 @@ $(function(){
 })
 function view(){
     $.ajax({
-        url:'view'
-        , method : 'GET'
+        url:'/sseview'
+        , method : 'POST'
         , contentType : "application/json"
         , dataType:"json"
         , data: JSON.stringify({username})

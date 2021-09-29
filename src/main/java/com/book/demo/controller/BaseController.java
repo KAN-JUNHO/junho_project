@@ -12,6 +12,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.ServerSentEvent;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 
@@ -23,17 +27,18 @@ import java.util.Map;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@EnableAsync
 public class BaseController{
     private final SchedulerThreadFactory schedulerThreadFactory;
 
-//    private Integer a = 0;
+    private Integer a = 0;
 
     @PostMapping("/plus")
     public Count plus(@RequestBody String jsonString) throws JsonProcessingException {
-        log.info("######  : {}", Database.requestCount++);
+        log.info("######  : {}", Database.requestCount);
 //        ObjectMapper mapper = new ObjectMapper();
 //        Map<String, String> params = mapper.readValue(jsonString, Map.class);
-// params.get("username")
+//        params.get("username")
         Count count = new Count(null, null, "plus", 1);
 //        log.info("input = "+count);
         Database.addQueue(count);
@@ -77,6 +82,14 @@ public class BaseController{
                 .map(i -> ServerSentEvent.builder("" + Database.getSingletonInstance().getCnt()).build());
     }
 
+    @Async
+    @PostMapping(value = "/sseview",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ListenableFuture<Flux<Object>> intervalStream1() {
+        log.info(String.valueOf(Flux.interval(Duration.ofSeconds(3)).map(i -> ServerSentEvent.builder("" + Database.getSingletonInstance().getCnt()).build())));
 
+        return new AsyncResult<>(Flux.interval(Duration.ofSeconds(3))
+                .map(i -> ServerSentEvent.builder("" + Database.getSingletonInstance().getCnt()).build()));
+    }
 
 }
+
