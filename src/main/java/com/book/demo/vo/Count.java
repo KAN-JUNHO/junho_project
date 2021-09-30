@@ -6,10 +6,14 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 @Data
+@Table("counts")
 public class Count {
 
+    @Id
     private MessageType type;
     private String sender;
     private String content;
@@ -22,13 +26,8 @@ public class Count {
         this.cnt = cnt;
     }
 
-    public Count() {
+    public Count() {}
 
-    }
-
-    public Count(Integer cnt){
-
-    }
 
     public int getCnt(){
         return cnt;

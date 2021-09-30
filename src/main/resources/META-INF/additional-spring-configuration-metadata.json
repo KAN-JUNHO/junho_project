@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "webclient.h2-console-port",
+      "type": "java.lang.String",
+      "description": "Description for webclient.h2-console-port."
+  }
+] }

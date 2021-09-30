@@ -11,16 +11,16 @@ import java.util.concurrent.Executor;
 @SpringBootApplication
 @EnableScheduling
 public class DemoApplication{
-	@Bean(name = "threadPoolTaskExecutor")
-	public Executor threadPoolTaskExecutor() {
-		ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
-		taskExecutor.setCorePoolSize(3);
-		taskExecutor.setMaxPoolSize(30);
-		taskExecutor.setQueueCapacity(10);
-		taskExecutor.setThreadNamePrefix("Executor-");
-		taskExecutor.initialize();
-		return taskExecutor;
-	}
+//	@Bean(name = "threadPoolTaskExecutor")
+//	public Executor threadPoolTaskExecutor() {
+//		ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+//		taskExecutor.setCorePoolSize(3);
+//		taskExecutor.setMaxPoolSize(30);
+//		taskExecutor.setQueueCapacity(10);
+//		taskExecutor.setThreadNamePrefix("Executor-");
+//		taskExecutor.initialize();
+//		return taskExecutor;
+//	}
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
