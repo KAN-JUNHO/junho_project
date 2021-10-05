@@ -10,13 +10,9 @@ logging:
       springframework:
         messaging: DEBUG
 
-myapplication:
-  datasource:
-    url:
-
 spring:
   profiles:
-    active: local
+    active: real
 #  datasource:
 #    url: jdbc:mysql://localhost:3306/world?serverTimeZone=UTC&CharacterEncoding=UTF-8
 #    username: root

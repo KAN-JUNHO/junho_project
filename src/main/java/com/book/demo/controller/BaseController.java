@@ -22,7 +22,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.Duration;
-
 import java.util.Map;
 
 
@@ -43,7 +42,8 @@ public class BaseController{
         Count count = new Count(null, params.get("username"), "plus", 1);
 //        log.info("input = "+count);
         Database.addQueue(count);
-        return countService.addUser(count);
+//        return countService.addUser(count);
+        return null;
     }
 
 
@@ -51,11 +51,11 @@ public class BaseController{
     public Mono<Count> minus(@RequestBody String jsonString) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, String> params = mapper.readValue(jsonString, Map.class);
-
         Count count = new Count(null, params.get("username") , "minus", 1);
 //        log.info("input = "+count);
         Database.addQueue(count);
-        return countService.addUser(count);
+//        return countService.addUser(count);
+        return null;
     }
 
 
@@ -87,7 +87,6 @@ public class BaseController{
     @PostMapping(value = "/sseview",produces = MediaType.APPLICATION_JSON_VALUE)
     public ListenableFuture<Flux<Object>> intervalStream1() {
         log.info(String.valueOf(Flux.interval(Duration.ofSeconds(3)).map(i -> ServerSentEvent.builder("" + Database.getSingletonInstance().getCnt()).build())));
-
         return new AsyncResult<>(Flux.interval(Duration.ofSeconds(3))
                 .map(i -> ServerSentEvent.builder("" + Database.getSingletonInstance().getCnt()).build()));
     }

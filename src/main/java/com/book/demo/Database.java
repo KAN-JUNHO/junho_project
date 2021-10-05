@@ -12,7 +12,6 @@ import java.util.Queue;
 @Slf4j
 public class Database {
     private static Singleton singletonInstance = Singleton.getInstance();
-//    private static Queue<Count> queue = new ArrayDeque<>(1000);
     private static Queue<Count> queue = new LinkedList<>();
     public static Integer requestCount = 0;
     //Count에 cnt를 더해서 넣어야함
