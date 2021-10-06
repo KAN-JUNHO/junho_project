@@ -1,24 +1,12 @@
 package com.book.demo.controller;
 
-import com.book.demo.config.database.ConnectionManager;
-import com.book.demo.service.CountService;
-import com.book.demo.vo.Count;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
 public class CountApiController {
-    private final CountService countService;
+//    private final CountService countService;
 
 //    @GetMapping("/counts")
 //    public Flux<Count> findAll(){ return countService.findAll(); }

@@ -1,30 +1,30 @@
-
-
-
-logging:
-  level:
-    com:
-      book:
-        demo: INFO
-    org:
-      springframework:
-        messaging: DEBUG
-
-spring:
-  profiles:
-    active: real
-#  datasource:
-#    url: jdbc:mysql://localhost:3306/world?serverTimeZone=UTC&CharacterEncoding=UTF-8
-#    username: root
-#    password: 1234qwer
-#    hikari:
-#      maximum-pool-size: 10
-#      connection-timeout: 5000
-#      connection-init-sql: SELECT 1
-#      validation-timeout: 2000
-#      minimum-idle: 10
-#      idle-timeout: 600000
-#      max-lifetime: 1800000
-
-server:
-  port: 8000
+#
+#
+#
+#logging:
+#  level:
+#    com:
+#      book:
+#        demo: INFO
+#    org:
+#      springframework:
+#        messaging: DEBUG
+#
+#spring:
+#  profiles:
+#    active: real
+##  datasource:
+##    url: jdbc:mysql://localhost:3306/world?serverTimeZone=UTC&CharacterEncoding=UTF-8
+##    username: root
+##    password: 1234qwer
+##    hikari:
+##      maximum-pool-size: 10
+##      connection-timeout: 5000
+##      connection-init-sql: SELECT 1
+##      validation-timeout: 2000
+##      minimum-idle: 10
+##      idle-timeout: 600000
+##      max-lifetime: 1800000
+#
+#server:
+#  port: 8000

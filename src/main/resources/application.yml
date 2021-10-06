@@ -5,14 +5,16 @@ logging:
   level:
     com:
       book:
-        demo: INFO
+        demo: info
     org:
-      springframework:
-        messaging: DEBUG
+      springframework: debug
 
 myapplication:
   datasource:
-    url:
+    dbdriver: "com.mysql.cj.jdbc.Driver"
+    dburl: "jdbc:mysql://localhost:3306/counts?serverTimezone=Asia/Seoul&useSSL=false"
+    dbUser: "root"
+    dbpasswd: "1234qwer"
 
 spring:
   profiles:
@@ -31,4 +33,4 @@ spring:
 #      max-lifetime: 1800000
 
 server:
-  port: 8000
+  port: 8080

@@ -1,12 +1,8 @@
 package com.book.demo.controller;
 
 import com.book.demo.Database;
-
-
 import com.book.demo.scheduler.SchedulerThreadFactory;
-import com.book.demo.service.CountService;
 import com.book.demo.vo.Count;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +13,10 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -31,7 +30,7 @@ import java.util.Map;
 @EnableAsync
 public class BaseController{
     private final SchedulerThreadFactory schedulerThreadFactory;
-    private final CountService countService;
+//    private final CountService countService;
     private Integer a = 0;
 
     @PostMapping("/plus")
