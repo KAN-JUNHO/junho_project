@@ -20,14 +20,12 @@ public class ConnectionManager {
     @Value("${myapplication.datasource.dbpasswd}")
     String dbpasswd;
 
-    ConnectionManager connectionManager;
     public ConnectionPool getConnectionPool() {
         return connectionPool;
     }
 
-    public ConnectionManager(String dburl, String dbUser, String dbpasswd) throws SQLException {
-        connectionPool = new ConnectionPool(dburl,dbUser,dbpasswd);
-
+    public ConnectionManager(int coreNum, ConnectionFactory connectionFactory){
+        connectionPool = new ConnectionPool(coreNum, connectionFactory);
     }
 
 //    public Connection getConnection(){

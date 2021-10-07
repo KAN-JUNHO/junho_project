@@ -30,11 +30,11 @@ class ConnectionManagerTest {
 
     @Autowired
     private ConnectionManager connectionManager;
-//
+
 //    @Test
 //    void connectionTest(){
-//        Connection connection = connectionManager.getConnection();
-//    }
+//        Connection connection = connectionManager.getConnection();ㅌㅌ
+//ㅌ   }
 
     @Test
     void retrieveAfterClose(){
@@ -44,7 +44,7 @@ class ConnectionManagerTest {
     @Test
     void find_sender() throws SQLException {
 
-        ConnectionManager connectionManager = new ConnectionManager(dburl, dbUser, dbpasswd);
+        ConnectionManager connectionManager = new ConnectionManager(dburl, dbUser,dbpasswd);
         Count count = connectionManager.getCount("junho");
         if (count==null) {
             System.out.println("################# 못찾음");
