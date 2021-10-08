@@ -12,14 +12,13 @@ import java.util.Map;
 
 @RequestMapping("/db")
 @RestController
-public class dbController {
+public class DBController {
 
     @Autowired
     private ConnectionPool ConnectionPool;
 
     @RequestMapping("/query")
     public String queryDb() {
-
         String querySql = "SELECT * FROM counts";
         List<Map<String, String>> result = new ArrayList<>();
         try {
@@ -27,14 +26,9 @@ public class dbController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         return result.toString();
+    }
 
-    }
-    @RequestMapping("/pool")
-    public String pool(){
-        return "2";
-    }
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);

@@ -1,6 +1,8 @@
 package com.book.demo.config.database;
 
 import lombok.Data;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.util.List;
 import java.util.Map;
@@ -17,5 +19,9 @@ public class ExecuteSqlBean {
         this.id = id;
         this.sql = sql;
         this.executeWaitObject = executeWaitObject;
+    }
+
+    public String ToString(){
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
     }
 }

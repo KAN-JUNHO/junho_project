@@ -59,12 +59,15 @@ public class ConnectionPool {
     };
 
     private void initConnectionThread(ConnectionFactory connectionFactory) {
-        for (int i = 0; i < coreNum; i++) {
+        logger.info("initConnectionThread 시작");
+        for (int i = 1; i < coreNum + 1; i++) {
             Connection connection = connectionFactory.makeConnection();
             Thread thread = new Thread(new ConnectionRunnable(connection, executeRunnableWaitObject, connectionCallBack), "db-connection-thread-" + i);
             thread.start();
         }
+        logger.info("initConnectionThread 끝");
     }
+
     public List<Map<String, String>> executeSql(String sql) throws InterruptedException {
 
         logger.info("executeSql 실행");
@@ -94,4 +97,6 @@ public class ConnectionPool {
         logger.info(String.valueOf(sqlBean.getResult()));
         return sqlBean.getResult();
     }
+
+
 }

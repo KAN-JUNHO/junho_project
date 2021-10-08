@@ -9,10 +9,13 @@ public class DatabaseConfig {
 
     @Value("${myapplication.datasource.dbdriver}")
     String dbdriver;
+
     @Value("${myapplication.datasource.dburl}")
     String dburl;
+
     @Value("${myapplication.datasource.dbUser}")
     String dbUser;
+
     @Value("${myapplication.datasource.dbpasswd}")
     String dbpasswd;
 
@@ -22,8 +25,6 @@ public class DatabaseConfig {
     }
     @Bean
     public ConnectionPool getConnectionPool(ConnectionFactory factory) {
-
-        return new ConnectionPool(2, factory);
+        return new ConnectionPool(0, factory);
     }
-
 }
