@@ -28,11 +28,8 @@ public class ConnectionRunnable implements Runnable{
                 synchronized (waitObject){
                     try {
                         logger.info(Thread.currentThread().getName() + " 시작 "); //시작
-
                         waitObject.wait();
-
                         logger.info(Thread.currentThread().getName() + " 마무리 "); //마무리
-
                         sqlBean = callBack.getExecuteSqlBean();
 
                         logger.info("{} sqlbean 가지고 옴 : {}", Thread.currentThread().getName(), sqlBean );//sqlbean 가지고 옴

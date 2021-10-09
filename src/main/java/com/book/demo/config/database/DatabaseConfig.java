@@ -25,6 +25,6 @@ public class DatabaseConfig {
     }
     @Bean
     public ConnectionPool getConnectionPool(ConnectionFactory factory) {
-        return new ConnectionPool(0, factory);
+        return new ConnectionPool(3, factory);
     }
 }
