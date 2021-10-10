@@ -74,7 +74,6 @@ public class ConnectionPool {
 
         maxSqlId.addAndGet(1);
         final Object executeWaitObject = new Object();
-
         logger.info("executeSql maxSqlId 도움 : " + maxSqlId);
 
         // 막히기 시작합니다 Object를 기다리는 중
