@@ -22,6 +22,7 @@ public class ConnectionRunnable implements Runnable{
 
     @Override
     public void run() {
+        // 데이터를 계속 가져옵니다. 만약 가져오지 않으면 wait
         while (!Thread.currentThread().isInterrupted()){
             ExecuteSqlBean sqlBean = callBack.getExecuteSqlBean();
             while (sqlBean == null){
@@ -40,11 +41,19 @@ public class ConnectionRunnable implements Runnable{
             }
             logger.info(Thread.currentThread().getName()); //sql빈 실행됨
 
+            // 실행 시작합니다
             List<Map<String,String>> result = doExecuteJob(sqlBean.getSql());
             sqlBean.setResult(result);
             logger.info(Thread.currentThread().getName()); // run 종료
 
+            // 실행이 완료되면, 연결 풀의 리셋이 완료됩니다.
             callBack.onExecuteSuccess(sqlBean);
+        }
+        // 연결을 닫습니다.
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
     private List<Map<String, String>> doExecuteJob(String sql)  {
@@ -63,7 +72,7 @@ public class ConnectionRunnable implements Runnable{
                 executeResult.add(columnMap);
             }
             try {
-                Thread.sleep(2000);
+                Thread.sleep(0);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
