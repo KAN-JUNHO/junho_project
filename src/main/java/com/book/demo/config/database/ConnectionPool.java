@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class ConnectionPool {
     private static final Logger logger = LoggerFactory.getLogger(ConnectionPool.class);
 
-    private List<Connection> cp;
+//    private List<Connection> cp;
 
     private int coreNum;
     private final Object executeRunnableWaitObject = new Object();
@@ -26,6 +26,8 @@ public class ConnectionPool {
         initConnectionThread(connectionFactory);
     }
 
+
+
     private ConnectionRunnable.ConnectionCallBack connectionCallBack = new ConnectionRunnable.ConnectionCallBack() {
         @Override
         public synchronized ExecuteSqlBean getExecuteSqlBean() {
@@ -35,12 +37,13 @@ public class ConnectionPool {
             if (sqlBeanVector.size() == 0) {
                 logger.info(Thread.currentThread().getName() + " getExecuteSqlBean 비어져있습니다.");
                 return null;
-            }
+            }else {
 
-            ExecuteSqlBean executeSqlBean = sqlBeanVector.get(0);
-            sqlBeanVector.remove(executeSqlBean);
-            logger.info(Thread.currentThread().getName() + " executeSqlBean 가져옴");
-            return executeSqlBean;
+                ExecuteSqlBean executeSqlBean = sqlBeanVector.get(0);
+                sqlBeanVector.remove(executeSqlBean);
+                logger.info(Thread.currentThread().getName() + " executeSqlBean 가져옴");
+                return executeSqlBean;
+            }
         }
 
         @Override
@@ -73,8 +76,10 @@ public class ConnectionPool {
         logger.info("executeSql 실행");
 
         maxSqlId.addAndGet(1);
+
         final Object executeWaitObject = new Object();
-        logger.info("executeSql maxSqlId 도움 : " + maxSqlId);
+        logger.info("executeSql maxSqlId 번째 : " + maxSqlId);
+
 
         // 막히기 시작합니다 Object를 기다리는 중
         ExecuteSqlBean sqlBean = new ExecuteSqlBean(maxSqlId.get(), sql, executeWaitObject);

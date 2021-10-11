@@ -63,7 +63,7 @@ public class ConnectionRunnable implements Runnable{
                 executeResult.add(columnMap);
             }
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

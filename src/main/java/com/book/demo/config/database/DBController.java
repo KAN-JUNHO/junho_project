@@ -28,6 +28,29 @@ public class DBController {
         }
         return result.toString();
     }
+    @RequestMapping("/query2")
+    public String queryDb2() {
+        String querySql = "SELECT * FROM counts2";
+        List<Map<String, String>> result = new ArrayList<>();
+        try {
+            result = ConnectionPool.executeSql(querySql);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return result.toString();
+    }
+    @RequestMapping("/query3")
+    public String queryDb3() {
+        String querySql = "SELECT * FROM counts3";
+        List<Map<String, String>> result = new ArrayList<>();
+        try {
+            result = ConnectionPool.executeSql(querySql);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return result.toString();
+    }
+
 
     @Override
     public String toString() {
