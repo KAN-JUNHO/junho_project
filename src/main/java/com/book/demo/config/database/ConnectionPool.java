@@ -48,12 +48,10 @@ public class ConnectionPool {
 
         @Override
         public void onExecuteSuccess(ExecuteSqlBean executeSqlBean) {
-
             System.out.println(Thread.currentThread().getName() + " executeId: " + executeSqlBean.getId() + " " + executeSqlBean.getResult());
             // 실행이 완료되면, 해당 waitObject에서 wait의 스레드를 notifyAll로 설정해야 합니다.
             Object executeWaitObject = executeSqlBean.getExecuteWaitObject();
             synchronized (executeWaitObject) {
-
                 System.out.println(Thread.currentThread().getName() + " executeWaitObject 알림을 시작합니다");
                 executeWaitObject.notifyAll();
                 System.out.println(Thread.currentThread().getName() + " executeWaitObject 종료 알림입니다.");
